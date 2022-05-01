@@ -92,22 +92,12 @@ struct node * delete_start(struct node *head)
 
 struct node * insert_at_pos(struct node *head, int pos, int d)
 {
-    // struct node *temp = (struct node *)malloc(sizeof(struct node));
-    // temp->data = d;
-    // ptr->link = head;
-    // head = ptr;
     if(head == NULL)
     {
-        head = (struct node *)malloc(sizeof(struct node));
-        head->data = d;
-        head->link = NULL;
+        printf("Empty pointer!\n");
     }
     else
     {
-        int i = 0;
-        struct node *ptr1 = head;
-        struct node *ptr2 = head->link;
-        struct node *temp = (struct node *)malloc(sizeof(struct node));
         if((pos == 0)|(pos == 1))
         {
             head = insert_start(head, d);
@@ -118,27 +108,23 @@ struct node * insert_at_pos(struct node *head, int pos, int d)
         }
         else
         {
-            int i = 0;
-            struct node *ptr1 = head;
-            struct node *ptr2 = head->link;
-            for(i = 1; i < pos-1; i++)
+            struct node *ptr = head;
+            for(int i = 1; i < pos-1; i++)
             {
-                if(ptr2 == NULL)
+                if(ptr->link == NULL)
                 {
                     printf("Position %d not available\n", pos);
                     return head;
                 }
                 else
                 {
-                    ptr1 = ptr1->link;
-                    ptr2 = ptr2->link;
+                    ptr = ptr->link;
                 }
             }
             struct node *temp = (struct node *)malloc(sizeof(struct node));
             temp->data = d;
-            temp->link = ptr2;
-            ptr1->link = temp;
-            // printf("%d %d\n", ptr1->data, ptr2->data);
+            temp->link = ptr->link;
+            ptr->link = temp;
         }
     }
     return head;
