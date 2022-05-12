@@ -94,7 +94,7 @@ struct node * insert_at_pos(struct node *head, int pos, int d)
 {
     if(head == NULL)
     {
-        printf("Empty pointer!\n");
+        printf("Empty linked list!\n");
     }
     else
     {
@@ -130,6 +130,46 @@ struct node * insert_at_pos(struct node *head, int pos, int d)
     return head;
 }
 
+struct node * delete_at_pos(struct node * head, int pos)
+{
+    if(head == NULL)
+    {
+        printf("Empty linked list!\n");
+    }
+    else
+    {
+        if((pos == 0)|(pos == 1))
+        {
+            head = delete_start(head);
+        }
+        else if(pos == -1)
+        {
+            head = delete_end(head);
+        }
+        else
+        {
+            struct node * ptr = head;
+            for(int i = 1; i < pos-1; i++)
+            {
+                if(ptr->link == NULL)
+                {
+                    printf("List index out of range\n");
+                    return head;
+                }
+                else
+                {
+                    ptr = ptr->link;
+                }
+            }
+            struct node *temp = ptr->link;
+            ptr->link = temp->link;
+            free(temp);
+            temp = NULL;
+        }
+    }
+    return head;
+}
+
 void print_single_linklist(struct node *head)
 {
     struct node *ptr = head;
@@ -157,6 +197,9 @@ int main()
     print_single_linklist(head);
     head = insert_at_pos(head, 3, 50);
     printf("Adding 50 at pos #3    > ");
+    print_single_linklist(head);
+    head = delete_at_pos(head, 4);
+    printf("Deleting element 4     > ");
     print_single_linklist(head);
     head = insert_end(head, 80);
     printf("Adding 80 at the end   > ");
