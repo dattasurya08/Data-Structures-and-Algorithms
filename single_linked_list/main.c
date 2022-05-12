@@ -38,7 +38,6 @@ struct node * insert_end(struct node *head, int d)
 
 struct node * delete_end(struct node *head)
 {
-    
     if(head == NULL)
     {
         printf("Already empty\n");
