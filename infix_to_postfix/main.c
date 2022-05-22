@@ -23,6 +23,7 @@ struct stack {
 typedef struct stack STACK;
 
 STACK operator = {STACK_TOP};
+STACK noperand = {STACK_TOP};
 
 /**
  * @brief Stack empty check
@@ -114,7 +115,7 @@ void prefixToPostfix(char * expression);
 int main()
 {
     char expression[100];
-    printf("Enter the expression: ");
+    printf("Enter the algebraic expression: ");
     scanf("%s", expression);
     prefixToPostfix(expression);
 }
@@ -197,7 +198,7 @@ void prefixToPostfix(char * expression)
     int i = 0;
     char exp;
     char prev = 0, curr = 0;
-    printf("Post-fix expression : ");
+    printf("Post-fix algebraic expression : ");
     while(expression[i] != '\0')
     {
         exp = expression[i];
