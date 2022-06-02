@@ -110,14 +110,14 @@ char precedence(char op);
  * @return void
  * 
  */
-void prefixToPostfix(char * expression);
+void InfixToPostfix(char * expression);
 
 int main()
 {
     char expression[100];
     printf("Enter the algebraic expression: ");
     scanf("%s", expression);
-    prefixToPostfix(expression);
+    InfixToPostfix(expression);
 }
 
 char isEmpty(STACK * st)
@@ -193,7 +193,7 @@ char precedence(char op)
     return prec;
 }
 
-void prefixToPostfix(char * expression)
+void InfixToPostfix(char * expression)
 {
     int i = 0;
     char exp;
